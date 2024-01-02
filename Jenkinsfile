@@ -3,6 +3,18 @@ pipeline{
     stages{
         stage('Build'){
             steps{
+                sh 'mvn compile'
+            }
+            stage('test'){
+            steps{
+                sh 'mvn test'
+            }
+                stage('QA'){
+            steps{
+                sh 'mvn pmd:pmd'
+            }
+                 stage('package'){
+            steps{
                 sh 'mvn clean package'
             }
             post{
